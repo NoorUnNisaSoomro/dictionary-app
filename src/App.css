@@ -1,38 +1,223 @@
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --text-color: #2b2d42;
+  --light-bg: #f8f9fa;
+  --dark-bg: #212529;
+  --dark-text: #e9ecef;
+  --error-color: #ef233c;
+  --success-color: #2ec4b6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.App.light {
+  background-color: var(--light-bg);
+  color: var(--text-color);
+}
+
+.App.dark {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  flex: 1;
+}
+
+/* Header Styles */
+header {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.App.dark header {
+  background-color: #1a1a1a;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Word Results Styles */
+.word-results {
+  margin-top: 2rem;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.word-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.word-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.phonetic-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.phonetic-text {
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.audio-button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.audio-button:hover {
+  background: var(--secondary-color);
+  transform: scale(1.1);
+}
+
+.audio-error {
+  color: var(--error-color);
+  font-size: 0.9rem;
+}
+
+.meaning-section {
+  margin: 2rem 0;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.App.dark .meaning-section {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.part-of-speech {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+}
+
+.definitions-list {
+  list-style: none;
+}
+
+.definition-item {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-left: 3px solid var(--primary-color);
+  background: rgba(67, 97, 238, 0.05);
+  border-radius: 0 4px 4px 0;
+}
+
+.definition-text {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.example {
+  margin: 0.5rem 0;
+  padding-left: 1rem;
+  border-left: 2px dashed var(--primary-color);
+  color: #666;
+}
+
+.App.dark .example {
+  color: #aaa;
+}
+
+.synonyms {
+  margin-top: 0.8rem;
+}
+
+.synonym-tag {
+  background: rgba(67, 97, 238, 0.1);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.3rem 0.6rem;
+  margin: 0.3rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.synonym-tag:hover {
+  background: var(--primary-color);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .word-header h1 {
+    font-size: 2rem;
   }
+  
+  .meaning-section {
+    padding: 1rem;
+  }
+}
+
+/* Error Message */
+.error-message {
+  background: rgba(239, 35, 60, 0.1);
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+  border-left: 3px solid var(--error-color);
+}
+
+.error-message button {
+  margin-top: 0.5rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
 }
